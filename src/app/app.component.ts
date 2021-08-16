@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Card } from './Classes/Card';
 import { Deck } from './Classes/Deck';
 
 @Component({
@@ -10,8 +11,9 @@ export class AppComponent {
   constructor(private deck: Deck) { }
 
   title = 'Deck2Deck';
-  normalDeck: any = [];
-  randomDeck: any = []
+  normalDeck: Card[] = [];
+  randomDeck: Card[] = [];
+  selectedCard: Card = { suit: "", value: "" };
 
   ngOnInit() {
     this.dealRandomDeck();
@@ -25,5 +27,8 @@ export class AppComponent {
   }
   dealNormalDeck() {
     this.normalDeck = this.deck.mountNormalDeck();
+  }
+  addCard(deckTo: Card[], card: Card) {
+    this.deck.addCard(deckTo, card);
   }
 }

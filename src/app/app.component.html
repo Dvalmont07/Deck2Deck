@@ -1,12 +1,18 @@
 <section class="d-flex">
-  <section *ngIf="randomDeck">
+  <section *ngIf="randomDeck" id="DeckOne">
     <div *ngFor="let card of randomDeck">
-      <div>{{card.suit}} - {{card.value}}</div>
+      <div (click)="selectedCard=card">{{card.suit}} - {{card.value}}</div>
     </div>
   </section>
-  <section *ngIf="normalDeck">
+
+  <section class="d-flex flex-column" id="addButtons">
+    <button title="Add to Deck 1">&rang;&rang;</button>
+    <button title="Add to Deck 2" (click)="addCard(randomDeck,selectedCard)">&lang;&lang;</button>
+  </section>
+
+  <section *ngIf="normalDeck" id="DeckTwo">
     <div *ngFor="let card of normalDeck">
-      <div>{{card.suit}} - {{card.value}}</div>
+      <div (click)="selectedCard=card">{{card.suit}} - {{card.value}}</div>
     </div>
   </section>
 </section>
