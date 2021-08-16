@@ -1,18 +1,25 @@
 <section class="d-flex">
   <section *ngIf="randomDeck" id="DeckOne">
-    <div *ngFor="let card of randomDeck">
-      <div (click)="selectedCard=card">{{card.suit}} - {{card.value}}</div>
+    <div *ngFor="let card of randomDeck; let ind = index">
+      <div [class.active-line]="selectedIdex.deck=='deckOne' && selectedIdex.index==ind"
+        (click)="selectedCard=card; selectedIdex={deck:'deckOne',index:ind}">{{card.suit}} - {{card.value}}
+      </div>
     </div>
   </section>
 
   <section class="d-flex flex-column" id="addButtons">
-    <button title="Add to Deck 1" (click)="addCard(normalDeck,selectedCard)">&rang;&rang;</button>
-    <button title="Add to Deck 2" (click)="addCard(randomDeck,selectedCard)">&lang;&lang;</button>
+    <button title="Add to Deck 1" (click)="addCard(randomDeck,normalDeck,selectedCard);"
+      [disabled]="selectedIdex.deck=='deckTwo'">&rang;&rang;</button>
+
+    <button title="Add to Deck 2" (click)="addCard(normalDeck,randomDeck,selectedCard)"
+      [disabled]="selectedIdex.deck=='deckOne'">&lang;&lang;</button>
   </section>
 
   <section *ngIf="normalDeck" id="DeckTwo">
-    <div *ngFor="let card of normalDeck">
-      <div (click)="selectedCard=card">{{card.suit}} - {{card.value}}</div>
+    <div *ngFor="let card of normalDeck; let ind = index">
+      <div [class.active-line]="selectedIdex.deck=='deckTwo' && selectedIdex.index==ind"
+        (click)="selectedCard=card;  selectedIdex={deck:'deckTwo',index:ind}">{{card.suit}} - {{card.value}}
+      </div>
     </div>
   </section>
 </section>
