@@ -4,11 +4,26 @@ export class Deck {
     suits: string[] = [];
     cardValues: string[] = [];
 
-    addCard(myDeck: Card[], card: Card) {
-        myDeck.push(card);
+    addCard({ myDeck, card }: { myDeck: Card[]; card: Card; }): boolean {
+        try {
+            myDeck.push(card);
+            return true;
+        } catch (e) {
+            console.log('Error:', e);
+        }
+        return false;
     }
-    removeCard(myDeck: Card[], card: Card) {
-        myDeck.unshift(card);
+    removeCard(myDeck: Card[], card: Card): boolean {
+        try {
+            myDeck.splice(myDeck.findIndex(element => {
+                return element.suit == card.suit && element.value == card.value;
+            }), 1);
+            return true;
+        } catch (e) {
+            console.log('Error:', e);
+        }
+        return false;
+
     }
     getCardValues() {
         return ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
