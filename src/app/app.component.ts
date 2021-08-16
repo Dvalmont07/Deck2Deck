@@ -17,19 +17,16 @@ export class AppComponent {
   selectedIdex: any = { deck: "deckOne", index: 0 };
 
   ngOnInit() {
-    this.dealRandomDeck();
-    this.dealNormalDeck();
-    console.log("fff", this.randomDeck);
+    this.dealDeckOne();
+    this.dealDeckTwo();
   }
-
-  dealRandomDeck() {
+  dealDeckOne() {
     this.randomDeck = this.deck.mountRandomDeck();
   }
-  dealNormalDeck() {
+  dealDeckTwo() {
     this.normalDeck = this.deck.mountNormalDeck();
   }
   addCard(deckFrom: Card[], deckTo: Card[], card: Card) {
-
     if (this.selectedCard.suit && this.selectedCard.value) {
       if (this.deck.addCard({ myDeck: deckTo, card })) {
         this.deck.removeCard(deckFrom, card);
@@ -38,16 +35,16 @@ export class AppComponent {
 
         if (this.selectedIdex.index == deckFrom.length) {
           this.selectedCard = deckFrom[this.selectedIdex.index - 1];
-          this.selectedIdex.index--;// = { deck: this.selectedIdex.deck, index: this.selectedIdex.index - 1 }
+          this.selectedIdex.index--;
         } else {
           this.selectedCard = deckFrom[this.selectedIdex.index];
         }
       }
     }
-    console.log("deckFrom[this.selectedIdex.index]", deckFrom[this.selectedIdex.index]);
-    // console.log("deckFrom[deckFrom.length - 1]", deckFrom[deckFrom.length - 1]);
-    console.log("this.selectedCard", this.selectedCard);
-    console.log("ggg", deckFrom[this.selectedIdex.index] == deckFrom[deckFrom.length - 1]);
-
   }
+}
+
+enum DeckNumber {
+  One = 1,
+  Two = 2,
 }
