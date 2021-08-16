@@ -19,7 +19,6 @@ export class AppComponent {
     this.dealRandomDeck();
     this.dealNormalDeck();
     console.log("fff", this.randomDeck);
-
   }
 
   dealRandomDeck() {
