@@ -13,10 +13,10 @@
   </section>
 
   <section class="d-flex flex-column" id="addButtons">
-    <button title="Add to Deck 1" (click)="addCard(deckOneCopy,deckTwoCopy,selectedCard);"
+    <button title="Add to Deck 1" (click)="moveCard(deckOneCopy,deckTwoCopy,selectedCard);"
       [disabled]="selectedIdex.deck=='deckTwo'">&rang;&rang;</button>
 
-    <button title="Add to Deck 2" (click)="addCard(deckTwoCopy,deckOneCopy,selectedCard)"
+    <button title="Add to Deck 2" (click)="moveCard(deckTwoCopy,deckOneCopy,selectedCard)"
       [disabled]="selectedIdex.deck=='deckOne'">&lang;&lang;</button>
   </section>
 

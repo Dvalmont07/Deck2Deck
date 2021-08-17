@@ -25,27 +25,32 @@ export class AppComponent {
   dealDeckOne() {
     this.deckOne = this.deck.mountRandomDeck();
     this.deckOneCopy = JSON.parse(JSON.stringify(this.deckOne));
+    this.selectedCard = this.deckOneCopy[0];
 
   }
   dealDeckTwo() {
     this.deckTwo = this.deck.mountNormalDeck();
     this.deckTwoCopy = JSON.parse(JSON.stringify(this.deckTwo));
   }
-  addCard(deckFrom: Card[], deckTo: Card[], card: Card) {
+
+  moveCard(deckFrom: Card[], deckTo: Card[], card: Card) {
     if (this.selectedCard.suit && this.selectedCard.value) {
+
       if (this.deck.addCard({ myDeck: deckTo, card })) {
         this.deck.removeCard(deckFrom, card);
 
-        if (this.selectedIdex.index == deckFrom.length) {
-          this.selectedCard = deckFrom[this.selectedIdex.index - 1];
-          this.selectedIdex.index--;
-        } else {
-          this.selectedCard = deckFrom[this.selectedIdex.index];
-        }
+        this.defineSelectedCard(deckFrom);
       }
     }
   }
-
+  private defineSelectedCard(deckFrom: Card[]) {
+    if (this.selectedIdex.index == deckFrom.length) {
+      this.selectedCard = deckFrom[this.selectedIdex.index - 1];
+      this.selectedIdex.index--;
+    } else {
+      this.selectedCard = deckFrom[this.selectedIdex.index];
+    }
+  }
 
   shuffleDeck(myDeck: Card[]) {
 
