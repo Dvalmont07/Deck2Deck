@@ -36,10 +36,10 @@ export class Deck {
         for (let i = 0; i < this.getSuits().length; i++) {
             for (let j = 0; j < this.getCardValues().length; j++) {
 
-                myDeck.push({ suit: this.getSuits()[i], value: this.getCardValues()[j] });
+                myDeck.push({ suit: this.getSuits()[i], value: this.getCardValues()[j], order: i });
             }
         }
-        return myDeck;
+        return myDeck.sort((a, b) => { return a.order - b.order; });
     }
     mountRandomDeck() {
         let myDeck: Card[] = [];
@@ -48,10 +48,11 @@ export class Deck {
             const cardSuitIndex = Math.ceil(Math.random() * this.getSuits().length - 1);
             const cardValueIndex = Math.ceil(Math.random() * this.getCardValues().length - 1);
 
-            myDeck.push({ suit: this.getSuits()[cardSuitIndex], value: this.getCardValues()[cardValueIndex] });
+            myDeck.push({ suit: this.getSuits()[cardSuitIndex], value: this.getCardValues()[cardValueIndex], order: i });
         }
         console.log("this.getSuits()", Math.random() * this.getSuits().length - 1);
-        return myDeck;
+
+        return myDeck.sort((a, b) => { return a.order - b.order; });
     }
 }
 

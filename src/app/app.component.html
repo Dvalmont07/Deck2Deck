@@ -1,6 +1,10 @@
 <section class="d-flex">
+
   <section *ngIf="randomDeck" id="DeckOne">
-    <button (click)="dealDeckOne()">Reset Deck One</button>
+    <section id="deckOneButtons">
+      <button (click)="resetDeckOne()">Reset Deck One</button>
+      <button (click)="shuffleDeck(randomDeck)">Shuffle Deck One</button>
+    </section>
     <div *ngFor="let card of randomDeck; let ind = index">
       <div [class.active-line]="selectedIdex.deck=='deckOne' && selectedIdex.index==ind"
         (click)="selectedCard=card; selectedIdex={deck:'deckOne',index:ind}">{{card.suit}} - {{card.value}}
@@ -17,7 +21,10 @@
   </section>
 
   <section *ngIf="normalDeck" id="DeckTwo">
-    <button (click)="dealDeckTwo()">Reset Deck Two</button>
+    <section id="deckOneButtons">
+      <button (click)="resetDeckTwo()">Reset Deck Two</button>
+      <button (click)="shuffleDeck(normalDeck)">Shuffle Deck One</button>
+    </section>
     <div *ngFor="let card of normalDeck; let ind = index">
       <div [class.active-line]="selectedIdex.deck=='deckTwo' && selectedIdex.index==ind"
         (click)="selectedCard=card;  selectedIdex={deck:'deckTwo',index:ind}">{{card.suit}} - {{card.value}}
