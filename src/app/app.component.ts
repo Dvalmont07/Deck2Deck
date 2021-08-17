@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Card } from './Classes/Card';
 import { Deck } from './Classes/Deck';
@@ -11,23 +10,26 @@ export class AppComponent {
   constructor(private deck: Deck) { }
 
   title = 'Deck2Deck';
-  normalDeck: Card[] = [];
-  randomDeck: Card[] = [];
+  deckOne: Card[] = [];
+  deckTwo: Card[] = [];
+
   selectedCard: Card = { suit: "", value: "", order: 0 };
   selectedIdex: any = { deck: "deckOne", index: 0 };
-  deckOneCopy: string = "";
+  deckOneCopy: Card[] = [];
+  deckTwoCopy: Card[] = [];
 
   ngOnInit() {
     this.dealDeckOne();
     this.dealDeckTwo();
   }
   dealDeckOne() {
-    this.randomDeck = this.deck.mountRandomDeck();
-    this.deckOneCopy = JSON.stringify(this.randomDeck);
+    this.deckOne = this.deck.mountRandomDeck();
+    this.deckOneCopy = JSON.parse(JSON.stringify(this.deckOne));
 
   }
   dealDeckTwo() {
-    this.normalDeck = this.deck.mountNormalDeck();
+    this.deckTwo = this.deck.mountNormalDeck();
+    this.deckTwoCopy = JSON.parse(JSON.stringify(this.deckTwo));
   }
   addCard(deckFrom: Card[], deckTo: Card[], card: Card) {
     if (this.selectedCard.suit && this.selectedCard.value) {
@@ -63,13 +65,17 @@ export class AppComponent {
   }
 
   resetDeckOne() {
-    let auxDeck = JSON.parse(this.deckOneCopy);
-    for (let i = 0; i < auxDeck.length; i++) {
-      this.randomDeck[i] = auxDeck[i];
+    this.deckOneCopy = [];
+    for (let i = 0; i < this.deckOne.length; i++) {
+      this.deckOneCopy[i] = this.deckOne[i];
     }
+
   }
   resetDeckTwo() {
-    this.dealDeckTwo();
+    this.deckTwoCopy = [];
+    for (let i = 0; i < this.deckTwo.length; i++) {
+      this.deckTwoCopy[i] = this.deckTwo[i];
+    }
   }
 }
 

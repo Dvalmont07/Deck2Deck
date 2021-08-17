@@ -1,11 +1,11 @@
 <section class="d-flex">
 
-  <section *ngIf="randomDeck" id="DeckOne">
+  <section *ngIf="deckOneCopy" id="DeckOne">
     <section id="deckOneButtons">
       <button (click)="resetDeckOne()">Reset Deck One</button>
-      <button (click)="shuffleDeck(randomDeck)">Shuffle Deck One</button>
+      <button (click)="shuffleDeck(deckOneCopy)">Shuffle Deck One</button>
     </section>
-    <div *ngFor="let card of randomDeck; let ind = index">
+    <div *ngFor="let card of deckOneCopy; let ind = index">
       <div [class.active-line]="selectedIdex.deck=='deckOne' && selectedIdex.index==ind"
         (click)="selectedCard=card; selectedIdex={deck:'deckOne',index:ind}">{{card.suit}} - {{card.value}}
       </div>
@@ -13,19 +13,19 @@
   </section>
 
   <section class="d-flex flex-column" id="addButtons">
-    <button title="Add to Deck 1" (click)="addCard(randomDeck,normalDeck,selectedCard);"
+    <button title="Add to Deck 1" (click)="addCard(deckOneCopy,deckTwoCopy,selectedCard);"
       [disabled]="selectedIdex.deck=='deckTwo'">&rang;&rang;</button>
 
-    <button title="Add to Deck 2" (click)="addCard(normalDeck,randomDeck,selectedCard)"
+    <button title="Add to Deck 2" (click)="addCard(deckTwoCopy,deckOneCopy,selectedCard)"
       [disabled]="selectedIdex.deck=='deckOne'">&lang;&lang;</button>
   </section>
 
-  <section *ngIf="normalDeck" id="DeckTwo">
+  <section *ngIf="deckTwoCopy" id="DeckTwo">
     <section id="deckOneButtons">
       <button (click)="resetDeckTwo()">Reset Deck Two</button>
-      <button (click)="shuffleDeck(normalDeck)">Shuffle Deck One</button>
+      <button (click)="shuffleDeck(deckTwoCopy)">Shuffle Deck One</button>
     </section>
-    <div *ngFor="let card of normalDeck; let ind = index">
+    <div *ngFor="let card of deckTwoCopy; let ind = index">
       <div [class.active-line]="selectedIdex.deck=='deckTwo' && selectedIdex.index==ind"
         (click)="selectedCard=card;  selectedIdex={deck:'deckTwo',index:ind}">{{card.suit}} - {{card.value}}
       </div>
