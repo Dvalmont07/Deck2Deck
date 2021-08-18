@@ -1,3 +1,29 @@
-.active-line {
-  background-color: red;
+.deck-box {
+  height: 80vh;
+  overflow: hidden;
+  border: 1px soli #cccccc;
+
+  .scroll-box {
+    overflow-y: scroll;
+    height: 88%
+  }
+
+  .class-deck-butons {
+    width: 22vw;
+  }
+
+  .line {
+    &:hover {
+      background-color: #8b9ebb1c;
+    }
+
+    &.active {
+      background-color: #8b9ebb;
+      color: white;
+    }
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
 }
