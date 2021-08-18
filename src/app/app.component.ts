@@ -38,7 +38,6 @@ export class AppComponent {
 
       if (this.deck.addCard({ myDeck: deckTo, card })) {
         this.deck.removeCard(deckFrom, card);
-
         this.defineSelectedCard(deckFrom);
       }
     }

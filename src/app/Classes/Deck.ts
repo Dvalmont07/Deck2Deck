@@ -6,7 +6,7 @@ export class Deck {
 
     addCard({ myDeck, card }: { myDeck: Card[]; card: Card; }): boolean {
         try {
-            myDeck.push(card);
+            myDeck.unshift(card);
             return true;
         } catch (e) {
             console.log('Error:', e);
@@ -35,7 +35,6 @@ export class Deck {
         let myDeck: Card[] = [];
         for (let i = 0; i < this.getSuits().length; i++) {
             for (let j = 0; j < this.getCardValues().length; j++) {
-
                 myDeck.push({ suit: this.getSuits()[i], value: this.getCardValues()[j], order: i });
             }
         }
@@ -47,11 +46,8 @@ export class Deck {
         for (let i = 0; i < 10; i++) {
             const cardSuitIndex = Math.ceil(Math.random() * this.getSuits().length - 1);
             const cardValueIndex = Math.ceil(Math.random() * this.getCardValues().length - 1);
-
             myDeck.push({ suit: this.getSuits()[cardSuitIndex], value: this.getCardValues()[cardValueIndex], order: i });
         }
-        console.log("this.getSuits()", Math.random() * this.getSuits().length - 1);
-
         return myDeck.sort((a, b) => { return a.order - b.order; });
     }
 }
