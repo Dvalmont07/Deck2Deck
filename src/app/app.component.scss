@@ -1,0 +1,61 @@
+.deck-box {
+  height: 80vh;
+  overflow: hidden;
+  border: 1px soli #cccccc;
+
+  .scroll-box {
+    overflow-y: scroll;
+    height: 88%
+  }
+
+  .class-deck-butons {
+    width: 22vw;
+  }
+
+  .line {
+    transition: background-color 0.4s;
+    background-color: white;
+
+    &:hover {
+      background-color: #8b9ebb1c;
+    }
+
+    &.active {
+      background-color: #8b9ebb;
+      color: white;
+      transition: background-color 1.5s;
+    }
+
+    &.blink:first-child {
+      background-color: transparent;
+      animation-name: example;
+      animation-duration: 1.5s;
+    }
+
+    @keyframes example {
+      0% {
+        background-color: transparent
+      }
+
+      25% {
+        background-color: rgba(255, 255, 0, 0.192);
+      }
+
+      50% {
+        background-color: rgba(255, 255, 0, 0.329);
+      }
+
+      75% {
+        background-color: rgba(255, 255, 0, 0.192);
+      }
+
+      100% {
+        background-color: rgba(255, 255, 0, 0.061);
+      }
+    }
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+}
