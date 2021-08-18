@@ -25,6 +25,42 @@
       color: white;
       transition: background-color 1.8s;
     }
+
+    &.blink:first-child {
+      background-color: transparent;
+      animation-name: example;
+      animation-duration: 2s;
+    }
+
+    @keyframes example {
+      0% {
+        background-color: transparent
+      }
+
+      25% {
+        background-color: rgba(255, 255, 0, 0.192);
+      }
+
+      50% {
+        background-color: rgba(255, 255, 0, 0.329);
+      }
+
+      75% {
+        background-color: rgba(255, 255, 0, 0.192);
+      }
+
+      100% {
+        background-color: transparent;
+      }
+
+      // from {
+      //   background-color: transparent;
+      // }
+
+      // to {
+      //   background-color: rgba(255, 255, 0, 0.39);
+      // }
+    }
   }
 
   .cursor-pointer {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, IterableDiffers } from '@angular/core';
 import { Card } from './Classes/Card';
 import { Deck } from './Classes/Deck';
 @Component({
@@ -7,7 +7,24 @@ import { Deck } from './Classes/Deck';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private deck: Deck) { }
+  constructor(private deck: Deck, private iterableDiffers: IterableDiffers) {
+    this.iterableDifferOne = iterableDiffers.find([]).create(undefined);
+    this.iterableDifferTwo = iterableDiffers.find([]).create(undefined);
+  }
+
+  ngDoCheck() {
+    let changesOnDeckOne = this.iterableDifferOne.diff(this.deckOneCopy);
+    let changesOnDeckTwo = this.iterableDifferTwo.diff(this.deckTwoCopy);
+
+    if (changesOnDeckOne) {
+      this.blikFirstLineOne = true;
+      console.log('Changes changesOnDeckOne detected!');
+    }
+    if (changesOnDeckTwo) {
+      this.blikFirstLineTwo = true;
+      console.log('Changes changesOnDeckTwo detected!');
+    }
+  }
 
   title = 'Deck2Deck';
   deckOne: Card[] = [];
@@ -17,6 +34,10 @@ export class AppComponent {
   selectedIdex: any = { deck: "deckOne", index: 0 };
   deckOneCopy: Card[] = [];
   deckTwoCopy: Card[] = [];
+  iterableDifferOne: any;
+  iterableDifferTwo: any;
+  blikFirstLineOne: boolean = false;
+  blikFirstLineTwo: boolean = false;
 
   ngOnInit() {
     this.dealDeckOne();

@@ -35,7 +35,7 @@
         <button class="btn btn-outline-secondary" (click)="shuffleDeck(deckTwoCopy)">Shuffle Deck One</button>
       </nav>
       <div class="scroll-box border border-secundary rounded p-2 mt-2">
-        <div class="line" *ngFor="let card of deckTwoCopy; let ind = index"
+        <div class="line" [class.blink]="blikFirstLineTwo" *ngFor="let card of deckTwoCopy; let ind = index"
           [class.active]="selectedIdex.deck=='deckTwo' && selectedIdex.index==ind"
           (click)="selectedCard=card;  selectedIdex={deck:'deckTwo',index:ind}">
           <div class=" p-1 cursor-pointer">{{card.suit}} - {{card.value}}</div>
