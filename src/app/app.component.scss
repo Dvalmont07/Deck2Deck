@@ -23,13 +23,13 @@
     &.active {
       background-color: #8b9ebb;
       color: white;
-      transition: background-color 1.8s;
+      transition: background-color 1.5s;
     }
 
     &.blink:first-child {
       background-color: transparent;
       animation-name: example;
-      animation-duration: 2s;
+      animation-duration: 1.5s;
     }
 
     @keyframes example {

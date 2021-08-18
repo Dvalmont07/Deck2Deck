@@ -1,4 +1,4 @@
-import { Component, IterableDiffers } from '@angular/core';
+import { Component } from '@angular/core';
 import { Card } from './Classes/Card';
 import { Deck } from './Classes/Deck';
 @Component({
@@ -7,23 +7,8 @@ import { Deck } from './Classes/Deck';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private deck: Deck, private iterableDiffers: IterableDiffers) {
-    this.iterableDifferOne = iterableDiffers.find([]).create(undefined);
-    this.iterableDifferTwo = iterableDiffers.find([]).create(undefined);
-  }
+  constructor(private deck: Deck) {
 
-  ngDoCheck() {
-    let changesOnDeckOne = this.iterableDifferOne.diff(this.deckOneCopy);
-    let changesOnDeckTwo = this.iterableDifferTwo.diff(this.deckTwoCopy);
-
-    if (changesOnDeckOne) {
-      this.blikFirstLineOne = true;
-      console.log('Changes changesOnDeckOne detected!');
-    }
-    if (changesOnDeckTwo) {
-      this.blikFirstLineTwo = true;
-      console.log('Changes changesOnDeckTwo detected!');
-    }
   }
 
   title = 'Deck2Deck';
@@ -43,6 +28,7 @@ export class AppComponent {
     this.dealDeckOne();
     this.dealDeckTwo();
   }
+
   dealDeckOne() {
     this.deckOne = this.deck.mountRandomDeck();
     this.deckOneCopy = JSON.parse(JSON.stringify(this.deckOne));
@@ -100,6 +86,22 @@ export class AppComponent {
     this.deckTwoCopy = [];
     for (let i = 0; i < this.deckTwo.length; i++) {
       this.deckTwoCopy[i] = this.deckTwo[i];
+    }
+  }
+
+  blinkFirstLine(deckNumber: DeckNumber) {
+
+    if (deckNumber == DeckNumber.One) {
+      this.blikFirstLineOne = true;
+      setTimeout(() => {
+        this.blikFirstLineOne = false;
+      }, 1500);
+    }
+    else if (deckNumber == DeckNumber.Two) {
+      this.blikFirstLineTwo = true;
+      setTimeout(() => {
+        this.blikFirstLineTwo = false;
+      }, 1500);
     }
   }
 }
