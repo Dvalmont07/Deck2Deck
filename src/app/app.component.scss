@@ -1,11 +1,10 @@
 .deck-box {
-  height: 80vh;
+  height: 85vh;
   overflow: hidden;
-  border: 1px soli #cccccc;
 
   .scroll-box {
     overflow-y: scroll;
-    height: 88%
+    height: 80%;
   }
 
   .class-deck-butons {

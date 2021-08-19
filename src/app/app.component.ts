@@ -11,6 +11,8 @@ export class AppComponent {
 
   }
 
+  firstExample = ""
+
   title = 'Deck2Deck';
   deckOne: Card[] = [];
   deckTwo: Card[] = [];
