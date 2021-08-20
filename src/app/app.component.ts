@@ -1,5 +1,4 @@
 import { AfterContentInit, Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Card } from './Classes/Card';
 import { Deck } from './Classes/Deck';
 @Component({
@@ -7,22 +6,8 @@ import { Deck } from './Classes/Deck';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterContentInit {
-  constructor(private deck: Deck, private router: Router, private route: ActivatedRoute) {
-
-    this.route.fragment.subscribe(fragment => {
-      if (fragment) {
-        //document.querySelector('#fff').scrollIntoView();
-      }
-    });
-
-  }
-  ngAfterContentInit(): void {
-
-  }
-
-  firstExample = ""
-
+export class AppComponent {
+  constructor(private deck: Deck) { }
   title = 'Deck2Deck';
   deckOne: Card[] = [];
   deckTwo: Card[] = [];
