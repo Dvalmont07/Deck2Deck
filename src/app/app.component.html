@@ -1,30 +1,31 @@
-<section class="d-flex flex-column align-items-center">
+<section class="d-flex flex-column align-items-center deck-container">
   <header>
-    <h1 class="text-center">Deck2Deck</h1>
+    <h1 class="text-left">Deck2Deck</h1>
   </header>
-  <section id="deckBox" class="d-flex deck-box">
+  <section id="decksBox" class="d-flex decks-box border p-5">
     <section id="DeckOne" class="deck-one" *ngIf="deckOneCopy">
       <nav id="deckOneButtons" class="class-deck-butons d-flex mt-2">
         <button class="btn btn-outline-dark me-auto" (click)="resetDeckOne()">Reset Deck One</button>
         <button class="btn btn-outline-secondary" (click)="shuffleDeck(deckOneCopy)">Shuffle Deck One</button>
       </nav>
-      <div class="text-muted fs-6 mt-2 px-2">
-        <span>Deck One has {{deckOneCopy.length}} cards | </span>
-        <a href="#topDeckOne">Back to top</a>
-      </div>
+
       <ng-container [ngTemplateOutlet]="deckTemplate"
-        [ngTemplateOutletContext]="{myDeck:deckOneCopy, topDeck:'topDeckOne', selectedDeck:'deckOne', blikFirstLine:blikFirstLineOne}"
+        [ngTemplateOutletContext]="{myDeck:deckOneCopy, topDeck:'topOne', selectedDeck:'deckOne', blikFirstLine:blikFirstLineOne}"
         *ngIf="deckOneCopy">
       </ng-container>
+      <div class="text-muted fs-6 mt-2 px-2">
+        <span>Deck One has {{deckOneCopy.length}} cards | </span>
+        <a href="#topOne">Deck top</a>
+      </div>
     </section>
 
-    <nav id="moveButtons" class="d-flex flex-column mt-2 mx-4 ">
+    <nav id="moveButtons" class="d-flex flex-column justify-content-center mt-2 mx-4 ">
       <button class="btn"
         [ngClass]="!deckOneCopy.length || selectedIdex.deck=='deckTwo'?'btn-outline-secondary':'btn-outline-primary'"
         title="Add to Deck 1" (click)="moveCard(deckOneCopy,deckTwoCopy,selectedCard); blinkFirstLine(2)"
         [disabled]="!deckOneCopy.length || selectedIdex.deck=='deckTwo'">Add to Deck One &rang;&rang;</button>
 
-      <button class="btn"
+      <button class="btn mt-3"
         [ngClass]="!deckTwoCopy.length || selectedIdex.deck=='deckOne'?'btn-outline-secondary':'btn-outline-primary'"
         title="Add to Deck 2" (click)="moveCard(deckTwoCopy,deckOneCopy,selectedCard);blinkFirstLine(1)"
         [disabled]="!deckTwoCopy.length || selectedIdex.deck=='deckOne'">&lang;&lang; Add to Deck Two</button>
@@ -35,17 +36,17 @@
         <button class="btn btn-outline-dark me-auto" (click)="resetDeckTwo()">Reset Deck Two</button>
         <button class="btn btn-outline-secondary" (click)="shuffleDeck(deckTwoCopy)">Shuffle Deck One</button>
       </nav>
-      <div class="text-muted fs-6 mt-2 px-2">
-        <span>Deck Two has {{deckTwoCopy.length}} cards | </span>
-        <a href="#topDeckTwo">Back to top</a>
-      </div>
+
       <ng-container [ngTemplateOutlet]="deckTemplate"
-        [ngTemplateOutletContext]="{myDeck:deckTwoCopy,topDeck:'topDeckTwo',selectedDeck:'deckTwo',blikFirstLine:blikFirstLineTwo}"
+        [ngTemplateOutletContext]="{myDeck:deckTwoCopy,topDeck:'topTwo',selectedDeck:'deckTwo',blikFirstLine:blikFirstLineTwo}"
         *ngIf="deckOneCopy">
       </ng-container>
+      <div class="text-muted fs-6 mt-2 px-2">
+        <span>Deck Two has {{deckTwoCopy.length}} cards | </span>
+        <a href="#topTwo">Deck top</a>
+      </div>
     </section>
   </section>
-  <router-outlet></router-outlet>
 </section>
 
 <!-- templates -->
@@ -59,3 +60,5 @@
     </div>
   </div>
 </ng-template>
+
+<router-outlet></router-outlet>
